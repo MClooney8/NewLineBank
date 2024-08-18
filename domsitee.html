@@ -226,32 +226,13 @@ footer {
 <script>
   // Set the initial balance when the page loads
   window.addEventListener('load', function() {
-    var initialBalance = 2195124.70; // Set the initial balance here
-    var storedBalance = localStorage.getItem('balance');
-    if (storedBalance === null) {
-      localStorage.setItem('balance', initialBalance);
-    }
     updateBalance(); // Call updateBalance() here
   });
 
   // Update the balance display
   function updateBalance() {
-    var currentBalance = parseFloat(localStorage.getItem('balance'));
-    if (isNaN(currentBalance)) {
-      currentBalance = 0;
-    }
-    document.getElementById('balance').innerHTML = '$' + currentBalance.toLocaleString();
-  }
-
-  // Deduct money from balance (call this function from your send page)
-  function deductMoney(amount) {
-    var currentBalance = parseFloat(localStorage.getItem('balance'));
-    if (isNaN(currentBalance)) {
-      currentBalance = 0;
-    }
-    var newBalance = currentBalance - amount;
-    localStorage.setItem('balance', newBalance);
-    updateBalance(); // Update the balance display
+    var balance = 2195124.70; // Set the initial balance here
+    document.getElementById('balance').innerHTML = '$' + balance.toLocaleString();
   }
 </script>
 
