@@ -190,7 +190,7 @@ footer {
         <div class="w3-left"><i class="fa fa-money w3-xxxlarge"></i></div> 
         <div class="w3-clear w3-animate-opacity w3-center"> 
           <h4>Available Balance</h4> 
-          <span id="balance" style="font-size: 36px; font-weight: bold;">2,195,124.70</span>
+          <span id="balance" style="font-size: 36px; font-weight: bold;"></span>
         </div> 
       </div> 
     </div> 
@@ -234,27 +234,26 @@ footer {
     updateBalance(); // Call updateBalance() here
   });
 
-  // Update the balance when the user makes a transfer
-  function transferAmount() {
-    var transferAmount = document.getElementById('amount').value;
-    var currentBalance = parseFloat(localStorage.getItem('balance'));
-    if (isNaN(currentBalance)) {
-      currentBalance = 0;
-    }
-    var newBalance = currentBalance - parseFloat(transferAmount);
-    localStorage.setItem('balance', newBalance);
-    updateBalance(); // Call updateBalance() here
-    window.location.href = 'domsitee.html';
-  }
-
   // Update the balance display
   function updateBalance() {
     var currentBalance = parseFloat(localStorage.getItem('balance'));
     if (isNaN(currentBalance)) {
       currentBalance = 0;
     }
-    document.getElementById('balance').innerHTML = '$' + currentBalance.toFixed(2);
+    document.getElementById('balance').innerHTML = '$' + currentBalance.toLocaleString();
+  }
+
+  // Deduct money from balance (call this function from your send page)
+  function deductMoney(amount) {
+    var currentBalance = parseFloat(localStorage.getItem('balance'));
+    if (isNaN(currentBalance)) {
+      currentBalance = 0;
+    }
+    var newBalance = currentBalance - amount;
+    localStorage.setItem('balance', newBalance);
+    updateBalance(); // Update the balance display
   }
 </script>
+
 </body>
 </html>
