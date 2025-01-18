@@ -172,16 +172,16 @@ footer {
   });
 
   function transferAmount() {
-    var transferAmount = document.getElementById('amount').value;
-    var currentBalance = parseFloat(localStorage.getItem('balance'));
-    if (isNaN(currentBalance)) {
-      currentBalance = 0;
-    }
-    var newBalance = currentBalance - parseFloat(transferAmount);
-    console.log("New Balance: " + newBalance);
-    localStorage.setItem('balance', newBalance);
-    window.location.href = 'domsitee.html';
+  var transferAmount = document.getElementById('amount').value;
+  var currentBalance = parseFloat(localStorage.getItem('balance'));
+  if (isNaN(currentBalance)) {
+    currentBalance = 0;
   }
+  var newBalance = currentBalance - parseFloat(transferAmount);
+  console.log("New Balance: " + newBalance);
+  localStorage.setItem('balance', newBalance);
+  window.location.href = 'domsitee1.html';
+}
 
   // Get the form element
   var form = document.getElementById('transferForm');
