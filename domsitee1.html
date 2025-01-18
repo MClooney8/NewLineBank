@@ -224,17 +224,17 @@ footer {
 </div>
 
 <script>
-  // Set the initial balance when the page loads
   window.addEventListener('load', function() {
     updateBalance(); // Call updateBalance() here
   });
 
-  // Update the balance display
   function updateBalance() {
-    var balance = 32195124.70; // Set the initial balance here
+    var balance = parseFloat(localStorage.getItem('balance')); 
+    if (isNaN(balance)) {
+      balance = 32195124.70; // Set a default initial balance 
+    }
     document.getElementById('balance').innerHTML = '$' + balance.toLocaleString();
   }
 </script>
-
 </body>
 </html>
