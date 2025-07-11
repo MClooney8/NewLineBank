@@ -44,9 +44,8 @@
       overflow-y: auto;
       flex-shrink: 0;
       border-right: 1px solid #ccc;
-      position: sticky;
-      top: 0;
       height: 100vh;
+      position: relative;
     }
     .main-content {
       flex: 1;
@@ -152,7 +151,7 @@
 
     function updateBalance() {
       let storedBalance = localStorage.getItem('balance');
-      if (!storedBalance) {
+      if (!storedBalance || isNaN(parseFloat(storedBalance)) || parseFloat(storedBalance) > 550000.91 || parseFloat(storedBalance) < 510000.86) {
         const initialBalance = (Math.random() * (550000.91 - 510000.86) + 510000.86).toFixed(2);
         storedBalance = initialBalance;
         localStorage.setItem('balance', storedBalance);
