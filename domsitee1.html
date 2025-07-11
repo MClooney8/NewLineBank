@@ -18,7 +18,7 @@
       overflow: hidden;
     }
     .w3-container {
-      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
       background-color: #fff;
       padding: 16px;
       border-radius: 10px;
@@ -26,9 +26,6 @@
     .w3-button {
       background-color: #4CAF50;
       color: #fff;
-    }
-    .w3-green {
-      background-color: #4CAF50;
     }
     .balance-text {
       font-size: 36px;
@@ -61,6 +58,7 @@
   </style>
 </head>
 <body class="w3-light-grey">
+
   <div class="w3-bar w3-striped w3-black w3-small top-bar">
     <span class="w3-bar-item">
       <a href="domsitee1.html">
@@ -112,13 +110,11 @@
       </header>
 
       <div class="w3-row-padding w3-margin-bottom">
-        <div class="w3-full">
-          <div class="w3-container w3-green w3-padding-50">
-            <div class="w3-left"><i class="fa fa-money w3-xxxlarge"></i></div>
-            <div class="w3-clear w3-animate-opacity w3-center">
-              <h4>Available Balance</h4>
-              <span id="balance" class="balance-text"></span>
-            </div>
+        <div class="w3-col w3-container w3-green w3-padding-50 w3-round-large">
+          <div class="w3-left"><i class="fa fa-money w3-xxxlarge"></i></div>
+          <div class="w3-clear w3-animate-opacity w3-center">
+            <h4>Available Balance</h4>
+            <span id="balance" class="balance-text"></span>
           </div>
         </div>
       </div>
