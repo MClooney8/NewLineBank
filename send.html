@@ -65,39 +65,39 @@
     <p>Powered by <a href="#" target="_blank">LiisH</a></p>
   </footer>
 
-  <script>
-    document.getElementById('transferForm').addEventListener('submit', function(event) {
-      event.preventDefault();
+<script>
+  function updateBalance() {
+    let storedBalance = localStorage.getItem('balance');
+    if (!storedBalance || isNaN(parseFloat(storedBalance))) {
+      storedBalance = (Math.random() * (550000.91 - 510000.86) + 510000.86).toFixed(2);
+      localStorage.setItem('balance', storedBalance);
+    }
 
-      const targetAccount = "3142800903";
-      const enteredAccount = document.getElementById("accountNumber").value;
-      const amount = parseFloat(document.getElementById("amount").value);
-      let balance = parseFloat(localStorage.getItem('balance')) || 0;
+    const balance = parseFloat(localStorage.getItem('balance'));
+    document.getElementById('balance').textContent = '$' + balance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
 
-      if (enteredAccount !== targetAccount) {
-        alert("Transaction blocked! Please contact us at newlinetrustbank@gmail.com for further assistance.");
-        return;
-      }
+  function sendMoney(amount) {
+    let currentBalance = parseFloat(localStorage.getItem('balance'));
+    amount = parseFloat(amount);
+    
+    if (isNaN(amount) || amount <= 0) {
+      alert("Enter a valid amount.");
+      return;
+    }
 
-      if (isNaN(amount) || amount <= 0) {
-        alert("Please enter a valid amount.");
-        return;
-      }
+    if (amount > currentBalance) {
+      alert("Insufficient funds.");
+      return;
+    }
 
-      if (balance < amount) {
-        alert("Insufficient balance.");
-        return;
-      }
+    let newBalance = (currentBalance - amount).toFixed(2);
+    localStorage.setItem('balance', newBalance);
+    updateBalance();
+    alert(`$${amount.toLocaleString()} sent successfully! New balance is $${parseFloat(newBalance).toLocaleString(undefined, { minimumFractionDigits: 2 })}`);
+  }
 
-      if (confirm("Are you sure you want to send the amount?")) {
-        balance -= amount;
-        localStorage.setItem('balance', balance.toFixed(2));
-        alert("Transfer successful!");
-        window.location.href = 'domsitee1.html';
-      } else {
-        alert("Transfer cancelled!");
-      }
-    });
-  </script>
+  window.addEventListener('load', updateBalance);
+</script>
 </body>
 </html>
