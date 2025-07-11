@@ -162,11 +162,11 @@
     function updateBalance() {
       let storedBalance = localStorage.getItem('balance');
 
-      if (!storedBalance) {
-        let min = 510000.86;
-        let max = 550000.91;
-        let randomBalance = (Math.random() * (max - min) + min).toFixed(2);
-        storedBalance = parseFloat(randomBalance);
+      if (!storedBalance || isNaN(storedBalance)) {
+        const min = 510000.86;
+        const max = 550000.91;
+        const randomBalance = (Math.random() * (max - min) + min).toFixed(2);
+        storedBalance = randomBalance;
         localStorage.setItem('balance', storedBalance);
       }
 
