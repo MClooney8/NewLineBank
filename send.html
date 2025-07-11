@@ -58,6 +58,9 @@
       width: 100%;
       z-index: 10;
     }
+    .form-input {
+      margin-bottom: 15px;
+    }
   </style>
 </head>
 <body class="w3-light-grey">
@@ -108,7 +111,7 @@
     <!-- Main Content -->
     <div class="main-content">
       <header class="w3-container">
-        <h5><b><i class="fa fa-dashboard"></i> My Dashboard</b></h5>
+        <h5><b><i class="fa fa-dashboard"></i> Send Money</b></h5>
       </header>
 
       <div class="w3-row-padding w3-margin-bottom">
@@ -124,18 +127,26 @@
       </div>
 
       <div class="w3-container">
-        <button class="w3-button w3-large w3-black w3-margin-bottom" onclick="location.href='send.html'">
-          <i class="fa fa-money" style="margin-right: 10px;"></i> Transfers
-        </button>
-        <button class="w3-button w3-large w3-black w3-margin-bottom" onclick="location.href='https://www.kayak.com/flights'">
-          <i class="fa fa-plane" style="margin-right: 10px;"></i> Book a Flight
-        </button>
-        <button class="w3-button w3-large w3-black w3-margin-bottom" onclick="location.href='https://www.booking.com/'">
-          <i class="fa fa-hotel"></i> Hotel Reservation
-        </button>
-        <button class="w3-button w3-large w3-black w3-margin-bottom" onclick="location.href='https://bitcoin.org/en/'">
-          <i class="fa fa-bitcoin"></i> Buy Bitcoin
-        </button>
+        <form onsubmit="return handleTransfer(event)">
+          <div class="form-input">
+            <label>Recipient Name</label>
+            <input class="w3-input w3-border" id="recipient" required>
+          </div>
+          <div class="form-input">
+            <label>Account Number</label>
+            <input class="w3-input w3-border" id="account" required>
+          </div>
+          <div class="form-input">
+            <label>Amount ($)</label>
+            <input type="number" class="w3-input w3-border" id="amount" required>
+          </div>
+          <div class="form-input">
+            <label>Description</label>
+            <input class="w3-input w3-border" id="description">
+          </div>
+          <button class="w3-button w3-black w3-margin-top" type="submit">Send Money</button>
+        </form>
+        <p id="message" class="w3-text-red w3-margin-top"></p>
       </div>
     </div>
   </div>
@@ -160,6 +171,32 @@
         minimumFractionDigits: 2,
         maximumFractionDigits: 2
       });
+    }
+
+    function handleTransfer(event) {
+      event.preventDefault();
+
+      const amount = parseFloat(document.getElementById('amount').value);
+      const currentBalance = parseFloat(localStorage.getItem('balance'));
+
+      if (amount <= 0 || isNaN(amount)) {
+        document.getElementById('message').textContent = 'Please enter a valid amount.';
+        return false;
+      }
+
+      if (amount > currentBalance) {
+        document.getElementById('message').textContent = 'Insufficient funds.';
+        return false;
+      }
+
+      const newBalance = (currentBalance - amount).toFixed(2);
+      localStorage.setItem('balance', newBalance);
+      updateBalance();
+
+      document.getElementById('message').textContent = 'Transfer successful!';
+      document.querySelector('form').reset();
+
+      return false;
     }
   </script>
 </body>
