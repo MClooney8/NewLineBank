@@ -1,118 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>NEW LINE - SEND MONEY</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
-/* Add some styles to make the chat window look nice */
-@media only screen and (max-width: 600px) {
-  /* Styles for screens smaller than 600px */
-  .w3-container {
-    width: 90%;
-  }
-  #chat-log {
-    height: 200px;
-  }
-}
-.w3-container {
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    background-color: #fff; /* White background */
-    padding: 16px;
-    border-radius: 10px;
-  }
-  
-  .w3-container.w3-green.w3-padding-50:hover {
-  background-color: #000; /* Black color */
-}
-
-  
-  /* Add green theme to the page */
-  body {
-    background-color: #fff; /* White background */
-  }
-  
-  .w3-bar {
-    background-color: #ffffff; /* Green background */
-  }
-  
-  .w3-button {
-    background-color: #4CAF50; /* Green background */
-    color: #fff; /* White text */
-  }
-  
-  .w3-green {
-    background-color: #4CAF50; /* Green background */
-  }
-  
-  .w3-border-green {
-    border-color: #4CAF50; /* Green border */
-  }
-  
-  .w3-text-green {
-    color: #4CAF50; /* Green text */
-  }
-  .live-chat-minimized {
-    height: 40px;
-  overflow: hidden;
-  min-height: 200px;
-  transition: height 0.5s; /* Add this line */
-
-footer {
-  position: sticky;
-  bottom: 0;
-  width: 100%;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.col-md-12 {
-  flex-basis: 100%;
-  max-width: 100%;
-}
-
-@media (min-width: 768px) {
-  .col-md-12 {
-    flex-basis: 50%;
-    max-width: 50%;
-  }
-}
-
-@media (min-width: 1200px) {
-  .col-md-12 {
-    flex-basis: 33.33%;
-    max-width: 33.33%;
-  }
-}
-</style>
+  <title>NEW LINE - SEND MONEY</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+    .w3-container {
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      background-color: #fff;
+      padding: 16px;
+      border-radius: 10px;
+    }
+    .w3-button {
+      background-color: #4CAF50;
+      color: #fff;
+    }
+    .w3-green {
+      background-color: #4CAF50;
+    }
+    body {
+      background-color: #fff;
+    }
+  </style>
 </head>
 <body class="w3-light-grey">
-	<!-- Top container -->
-	<div class="w3-bar w3-striped w3-black w3-small" style="z-index: 8;">
-		<span class="w3-bar-item w3-animate-left">
-			<a href="domsitee1.html">
-				<img src="Newline.png" style="height: 82px; margin-top: 0px;">
-			</a>
-		</span>
-		<div class="w3-center" style="margin-top:1px;">
-			<h1>Transfer</h1>
-		</div>
-	</div>
-	<div class="w3-card w3-padding-8 w3-center w3-animate-opacity" style="width: 50%; margin: 0 auto;">
+  <div class="w3-bar w3-striped w3-black w3-small">
+    <span class="w3-bar-item">
+      <a href="domsitee1.html">
+        <img src="Newline.png" style="height: 82px;">
+      </a>
+    </span>
+    <div class="w3-center">
+      <h1>Transfer</h1>
+    </div>
+  </div>
+
+  <div class="w3-card w3-padding-8 w3-center w3-animate-opacity" style="width: 50%; margin: 0 auto;">
     <form id="transferForm">
       <div class="w3-section">
         <label>Account Number</label>
@@ -128,68 +55,49 @@ footer {
       </div>
       <div class="w3-section">
         <label>Amount to Send</label>
-        <input type="text" id="amount" name="amount" class="w3-input w3-border" required>
+        <input type="number" step="0.01" id="amount" name="amount" class="w3-input w3-border" required>
       </div>
-      <button id="transferBtn" class="w3-button w3-block w3-green w3-section" style="width:100%">Transfer</button>
+      <button id="transferBtn" type="submit" class="w3-button w3-block w3-green w3-section">Transfer</button>
     </form>
   </div>
-  
-	<!-- Footer -->
-	<footer class="w3-container w3-padding-16 w3-light-grey">
-		<p>Powered by <a href="(link unavailable)" target="_blank">LiisH</a></p>
-	</footer>
-	<!-- End page content -->
-</div>
-<script>
-  // Get the transfer button
-  var transferBtn = document.getElementById("transferBtn");
 
-  // Set the account number to transfer to
-  var accountNumberToTransferTo = "3142800903";
+  <footer class="w3-container w3-padding-16 w3-light-grey">
+    <p>Powered by <a href="#" target="_blank">LiisH</a></p>
+  </footer>
 
-  // Add an event listener to the transfer button
-  transferBtn.addEventListener("click", function() {
-    // Get the account number entered by the user
-    var accountNumberEntered = document.getElementById("accountNumber").value;
+  <script>
+    document.getElementById('transferForm').addEventListener('submit', function(event) {
+      event.preventDefault();
 
-    // Check if the account number entered matches the account number to transfer to
-    if (accountNumberEntered === accountNumberToTransferTo) {
-      // Ask for confirmation
+      const targetAccount = "3142800903";
+      const enteredAccount = document.getElementById("accountNumber").value;
+      const amount = parseFloat(document.getElementById("amount").value);
+      let balance = parseFloat(localStorage.getItem('balance')) || 0;
+
+      if (enteredAccount !== targetAccount) {
+        alert("Transaction blocked! Please contact us at newlinetrustbank@gmail.com for further assistance.");
+        return;
+      }
+
+      if (isNaN(amount) || amount <= 0) {
+        alert("Please enter a valid amount.");
+        return;
+      }
+
+      if (balance < amount) {
+        alert("Insufficient balance.");
+        return;
+      }
+
       if (confirm("Are you sure you want to send the amount?")) {
-        // User clicked "Proceed"
-        transferAmount(); // Call transferAmount() here
+        balance -= amount;
+        localStorage.setItem('balance', balance.toFixed(2));
         alert("Transfer successful!");
-        localStorage.setItem('transferMade', 'true');
-        window.location.href='domsitee1.html';
+        window.location.href = 'domsitee1.html';
       } else {
-        // User clicked "Cancel"
         alert("Transfer cancelled!");
       }
-    } else {
-      // Display an error message if the transaction is blocked
-      alert("Transaction blocked! Please contact us at newlinetrustbank@gmail.com for further assistance.");nk
-    }
-  });
-
-  function transferAmount() {
-  var transferAmount = document.getElementById('amount').value;
-  var currentBalance = parseFloat(localStorage.getItem('balance'));
-  if (isNaN(currentBalance)) {
-    currentBalance = 0;
-  }
-  var newBalance = currentBalance - parseFloat(transferAmount);
-  console.log("New Balance: " + newBalance);
-  localStorage.setItem('balance', newBalance);
-  window.location.href = 'domsitee1.html';
-}
-
-  // Get the form element
-  var form = document.getElementById('transferForm');
-
-  // Add an event listener to the form submission
-  form.addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent the default form submission behavior
-  });
-</script>
+    });
+  </script>
 </body>
 </html>
