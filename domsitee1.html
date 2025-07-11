@@ -120,4 +120,61 @@
       <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-credit-card fa-fw"></i> Request Credit Card</a>
       <a href="#" class="w3-bar-item w3-button w3-padding" onclick="location.href='mailto:fidelityamericatrust@gmail.com'"><i class="fa fa-balance-scale fa-fw"></i> Dispute Resolution</a>
       <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i> History</a>
-      <a href="profile.html" class="w3-bar-item w3-button w3-pa
+      <a href="profile.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw"></i> Profile</a>
+    </div>
+  </nav>
+
+  <div class="w3-main" style="margin-left:300px;margin-top:43px;">
+    <header class="w3-container-fluid" style="padding-top:22px">
+      <h5><b><i class="fa fa-dashboard"></i> My Dashboard</b></h5>
+    </header>
+
+    <div class="w3-row-padding w3-margin-bottom"> 
+      <div class="w3-full"> 
+        <div class="w3-container w3-green w3-padding-50" style="transition: background-color 0.5s;"> 
+          <div class="w3-left"><i class="fa fa-money w3-xxxlarge"></i></div> 
+          <div class="w3-clear w3-animate-opacity w3-center"> 
+            <h4>Available Balance</h4> 
+            <span id="balance" class="balance-text"></span>
+          </div> 
+        </div> 
+      </div> 
+    </div>
+
+    <div class="w3-container-fluid">
+      <button class="w3-button w3-large w3-black w3-margin-bottom" onclick="location.href='send.html'"><i class="fa fa-money" style="margin-right: 10px;"></i> Transfers </button>
+      <button class="w3-button w3-large w3-black w3-margin-bottom" onclick="location.href='https://www.kayak.com/flights'"><i class="fa fa-plane" style="margin-right: 10px;"></i> Book a Flight </button>
+      <button class="w3-button w3-large w3-black w3-margin-bottom" onclick="location.href='https://www.booking.com/'"><i class="fa fa-hotel"></i> Hotel Reservation </button>
+      <button class="w3-button w3-large w3-black w3-margin-bottom" onclick="location.href='https://bitcoin.org/en/'"><i class="fa fa-bitcoin"></i> Buy Bitcoin </button>
+    </div>
+  </div>
+
+  <footer class="w3-container-fluid w3-padding-16 w3-light-grey">
+    <p>Powered by <a href="#" target="_blank">LiisH</a></p>
+  </footer>
+
+  <script>
+    function logout() {
+      localStorage.clear();
+      window.location.href = 'index.html';
+    }
+
+    function updateBalance() {
+      let storedBalance = localStorage.getItem('balance');
+
+      if (!storedBalance) {
+        let min = 510000.86;
+        let max = 550000.91;
+        let randomBalance = (Math.random() * (max - min) + min).toFixed(2);
+        storedBalance = parseFloat(randomBalance);
+        localStorage.setItem('balance', storedBalance);
+      }
+
+      document.getElementById('balance').textContent = '$' + parseFloat(storedBalance).toLocaleString();
+    }
+
+    window.addEventListener('load', updateBalance);
+  </script>
+
+</body>
+</html>
