@@ -160,17 +160,17 @@
     }
 
     function updateBalance() {
-      let storedBalance = localStorage.getItem('balance');
+      let storedBalance = parseFloat(localStorage.getItem('balance'));
+      const min = 510000.86;
+      const max = 550000.91;
 
-      if (!storedBalance || isNaN(storedBalance)) {
-        const min = 510000.86;
-        const max = 550000.91;
+      if (isNaN(storedBalance) || storedBalance < min || storedBalance > max) {
         const randomBalance = (Math.random() * (max - min) + min).toFixed(2);
-        storedBalance = randomBalance;
+        storedBalance = parseFloat(randomBalance);
         localStorage.setItem('balance', storedBalance);
       }
 
-      document.getElementById('balance').textContent = '$' + parseFloat(storedBalance).toLocaleString();
+      document.getElementById('balance').textContent = '$' + storedBalance.toLocaleString();
     }
 
     window.addEventListener('load', updateBalance);
