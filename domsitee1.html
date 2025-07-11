@@ -11,6 +11,10 @@
     html, body, h1, h2, h3, h4, h5 {
       font-family: "Raleway", sans-serif;
     }
+    body {
+      background-color: #fff;
+      margin: 0;
+    }
     .w3-container {
       box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
       background-color: #fff;
@@ -24,21 +28,28 @@
     .w3-green {
       background-color: #4CAF50;
     }
-    body {
-      background-color: #fff;
-    }
     .balance-text {
       font-size: 36px;
       font-weight: bold;
     }
-    .w3-sidebar {
-  height: 100%;
-  overflow: auto;
-  position: fixed; /* <- this causes static/fixed behavior */
-}
+    .layout {
+      display: flex;
+      height: calc(100vh - 82px);
+      overflow: hidden;
     }
-    .w3-main {
-      margin-left: 300px;
+    .sidebar {
+      width: 300px;
+      background-color: #fff;
+      overflow-y: auto;
+      flex-shrink: 0;
+      border-right: 1px solid #ccc;
+      height: 100%;
+      position: sticky;
+      top: 82px;
+    }
+    .main-content {
+      flex: 1;
+      overflow-y: auto;
       padding-top: 43px;
     }
   </style>
@@ -62,62 +73,64 @@
     </span>
   </div>
 
-  <!-- Sidebar -->
-  <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar">
-    <div class="w3-container w3-row">
-      <div class="w3-col s8 w3-bar">
-        <span>Welcome, <strong>Flores, Tarik</strong></span><br>
+  <div class="layout">
+    <!-- Sidebar -->
+    <nav class="sidebar">
+      <div class="w3-container w3-row">
+        <div class="w3-col s8 w3-bar">
+          <span>Welcome, <strong>Flores, Tarik</strong></span><br>
+        </div>
+        <div class="w3-col s4">
+          <img src="Flores.jpg" alt="Profile Picture" style="width:100%;height: 80px;border-radius:100%;margin-top:20px;">
+        </div>
       </div>
-      <div class="w3-col s4">
-        <img src="Flores.jpg" alt="Profile Picture" style="width:100%;height: 80px;border-radius:100%;margin-top:20px;">
+      <hr>
+      <div class="w3-container">
+        <h5>Services</h5>
       </div>
-    </div>
-    <hr>
-    <div class="w3-container">
-      <h5>Services</h5>
-    </div>
-    <div class="w3-bar-block">
-      <a href="#" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i> Overview</a>
-      <a href="send.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-money fa-fw"></i> Send Money</a>
-      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-laptop fa-fw"></i> Pay bills</a>
-      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-credit-card fa-fw"></i> Request Credit Card</a>
-      <a href="#" class="w3-bar-item w3-button w3-padding" onclick="location.href='mailto:fidelityamericatrust@gmail.com'"><i class="fa fa-balance-scale fa-fw"></i> Dispute Resolution</a>
-      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i> History</a>
-      <a href="profile.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw"></i> Profile</a>
-    </div>
-  </nav>
+      <div class="w3-bar-block">
+        <a href="#" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i> Overview</a>
+        <a href="send.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-money fa-fw"></i> Send Money</a>
+        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-laptop fa-fw"></i> Pay bills</a>
+        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-credit-card fa-fw"></i> Request Credit Card</a>
+        <a href="#" class="w3-bar-item w3-button w3-padding" onclick="location.href='mailto:fidelityamericatrust@gmail.com'"><i class="fa fa-balance-scale fa-fw"></i> Dispute Resolution</a>
+        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i> History</a>
+        <a href="profile.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw"></i> Profile</a>
+      </div>
+    </nav>
 
-  <!-- Page Content -->
-  <div class="w3-main">
-    <header class="w3-container">
-      <h5><b><i class="fa fa-dashboard"></i> My Dashboard</b></h5>
-    </header>
+    <!-- Main Content -->
+    <div class="main-content">
+      <header class="w3-container">
+        <h5><b><i class="fa fa-dashboard"></i> My Dashboard</b></h5>
+      </header>
 
-    <div class="w3-row-padding w3-margin-bottom">
-      <div class="w3-full">
-        <div class="w3-container w3-green w3-padding-50">
-          <div class="w3-left"><i class="fa fa-money w3-xxxlarge"></i></div>
-          <div class="w3-clear w3-animate-opacity w3-center">
-            <h4>Available Balance</h4>
-            <span id="balance" class="balance-text"></span>
+      <div class="w3-row-padding w3-margin-bottom">
+        <div class="w3-full">
+          <div class="w3-container w3-green w3-padding-50">
+            <div class="w3-left"><i class="fa fa-money w3-xxxlarge"></i></div>
+            <div class="w3-clear w3-animate-opacity w3-center">
+              <h4>Available Balance</h4>
+              <span id="balance" class="balance-text"></span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="w3-container">
-      <button class="w3-button w3-large w3-black w3-margin-bottom" onclick="location.href='send.html'">
-        <i class="fa fa-money" style="margin-right: 10px;"></i> Transfers
-      </button>
-      <button class="w3-button w3-large w3-black w3-margin-bottom" onclick="location.href='https://www.kayak.com/flights'">
-        <i class="fa fa-plane" style="margin-right: 10px;"></i> Book a Flight
-      </button>
-      <button class="w3-button w3-large w3-black w3-margin-bottom" onclick="location.href='https://www.booking.com/'">
-        <i class="fa fa-hotel"></i> Hotel Reservation
-      </button>
-      <button class="w3-button w3-large w3-black w3-margin-bottom" onclick="location.href='https://bitcoin.org/en/'">
-        <i class="fa fa-bitcoin"></i> Buy Bitcoin
-      </button>
+      <div class="w3-container">
+        <button class="w3-button w3-large w3-black w3-margin-bottom" onclick="location.href='send.html'">
+          <i class="fa fa-money" style="margin-right: 10px;"></i> Transfers
+        </button>
+        <button class="w3-button w3-large w3-black w3-margin-bottom" onclick="location.href='https://www.kayak.com/flights'">
+          <i class="fa fa-plane" style="margin-right: 10px;"></i> Book a Flight
+        </button>
+        <button class="w3-button w3-large w3-black w3-margin-bottom" onclick="location.href='https://www.booking.com/'">
+          <i class="fa fa-hotel"></i> Hotel Reservation
+        </button>
+        <button class="w3-button w3-large w3-black w3-margin-bottom" onclick="location.href='https://bitcoin.org/en/'">
+          <i class="fa fa-bitcoin"></i> Buy Bitcoin
+        </button>
+      </div>
     </div>
   </div>
 
