@@ -150,11 +150,16 @@
     function updateBalance() {
       let storedBalance = localStorage.getItem('balance');
       if (!storedBalance || isNaN(parseFloat(storedBalance)) || parseFloat(storedBalance) > 550000.91 || parseFloat(storedBalance) < 510000.86) {
-        storedBalance = (Math.random() * (550000.91 - 510000.86) + 510000.86).toFixed(2);
+        const initialBalance = (Math.random() * (550000.91 - 510000.86) + 510000.86).toFixed(2);
+        storedBalance = initialBalance;
         localStorage.setItem('balance', storedBalance);
       }
+
       const balance = parseFloat(localStorage.getItem('balance'));
-      document.getElementById('balance').textContent = '$' + balance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      document.getElementById('balance').textContent = '$' + balance.toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
     }
   </script>
 </body>
