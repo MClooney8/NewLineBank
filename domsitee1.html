@@ -231,9 +231,18 @@ footer {
 
   // Update the balance display
   function updateBalance() {
-    var balance = 519124.70; // Set the initial balance here
-    document.getElementById('balance').innerHTML = '$' + balance.toLocaleString();
+  var storedBalance = localStorage.getItem('balance');
+
+  // If there's no balance in localStorage, use a default value
+  var balance = storedBalance ? parseFloat(storedBalance) : 519124.70;
+
+  // Save initial balance to localStorage if not present
+  if (!storedBalance) {
+    localStorage.setItem('balance', balance);
   }
+
+  document.getElementById('balance').innerHTML = '$' + balance.toLocaleString();
+}
 </script>
 
 </body>
