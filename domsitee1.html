@@ -14,6 +14,8 @@
     body {
       background-color: #fff;
       margin: 0;
+      height: 100vh;
+      overflow: hidden;
     }
     .w3-container {
       box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -35,7 +37,6 @@
     .layout {
       display: flex;
       height: calc(100vh - 82px);
-      overflow: hidden;
     }
     .sidebar {
       width: 300px;
@@ -43,19 +44,25 @@
       overflow-y: auto;
       flex-shrink: 0;
       border-right: 1px solid #ccc;
-      height: 100%;
       position: sticky;
-      top: 82px;
+      top: 0;
+      height: 100vh;
     }
     .main-content {
       flex: 1;
       overflow-y: auto;
-      padding-top: 43px;
+      padding: 20px;
+    }
+    .top-bar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 10;
     }
   </style>
 </head>
 <body class="w3-light-grey">
-  <div class="w3-bar w3-striped w3-black w3-small">
+  <div class="w3-bar w3-striped w3-black w3-small top-bar">
     <span class="w3-bar-item">
       <a href="domsitee1.html">
         <img src="Newline.png" style="height: 82px;">
@@ -73,7 +80,7 @@
     </span>
   </div>
 
-  <div class="layout">
+  <div class="layout" style="margin-top: 82px;">
     <!-- Sidebar -->
     <nav class="sidebar">
       <div class="w3-container w3-row">
