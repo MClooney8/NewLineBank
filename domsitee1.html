@@ -119,7 +119,7 @@ footer {
 <div class="w3-container-fluid">
 <div class="w3-bar w3-striped w3-black w3-small" style="z-index: 8;">
   <span class="w3-bar-item w3-animate-left">
-  <a href="domsitee1.html">  
+  <a href="domsitee.html">  
     <img src="Newline.png" style="height: 82px; margin-top: 0px;">
   </a>
 </span>
@@ -140,9 +140,9 @@ footer {
 <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
   <div class="w3-container-fluid w3-row">
     <div class="w3-col s8 w3-bar">
-      <span>Welcome, <strong>Kenneth, Copeland</strong></span><br>
+      <span>Welcome, <strong>Flores, Tarik</strong></span><br>
       <div class="w3-col s4">
-      <img src="KenCope.jpg" alt="Profile Picture" style="width:100%;height: 80px;border-radius:100%;margin-top:20px;">
+      <img src="Flores.jpg" alt="Profile Picture" style="width:100%;height: 80px;border-radius:100%;margin-top:20px;">
       </div>
     </div>
     <div id="date-time"></div>
@@ -216,7 +216,7 @@ footer {
   <!-- Footer -->
   <footer class="w3-container-fluid w3-padding-16 w3-light-grey">
 
-    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">LiisH</a></p>
+    <p>Powered by <a href="@LiisH" target="_blank">LiisH</a></p>
     
   </footer>
 
@@ -224,27 +224,17 @@ footer {
 </div>
 
 <script>
+  // Set the initial balance when the page loads
   window.addEventListener('load', function() {
-    // Check if initial balance is already set in local storage
-    var initialBalance = parseFloat(localStorage.getItem('balance'));
-
-    if (isNaN(initialBalance)) { 
-      // If not set, generate a random balance
-      initialBalance = generateRandomBalance(30000000, 35000000); 
-      localStorage.setItem('balance', initialBalance); 
-    }
-
-    updateBalance(); 
+    updateBalance(); // Call updateBalance() here
   });
 
-  function generateRandomBalance(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min; 
-  }
-
+  // Update the balance display
   function updateBalance() {
-    var balance = parseFloat(localStorage.getItem('balance'));
+    var balance = 519124.70; // Set the initial balance here
     document.getElementById('balance').innerHTML = '$' + balance.toLocaleString();
   }
 </script>
+
 </body>
 </html>
