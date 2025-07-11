@@ -17,20 +17,6 @@
       height: 100vh;
       overflow: hidden;
     }
-    .w3-container {
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      background-color: #fff;
-      padding: 16px;
-      border-radius: 10px;
-    }
-    .w3-button {
-      background-color: #4CAF50;
-      color: #fff;
-    }
-    .balance-text {
-      font-size: 36px;
-      font-weight: bold;
-    }
     .layout {
       display: flex;
       height: calc(100vh - 82px);
@@ -55,133 +41,148 @@
       width: 100%;
       z-index: 10;
     }
+    .balance-text {
+      font-size: 36px;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body class="w3-light-grey">
 
-  <div class="w3-bar w3-striped w3-black w3-small top-bar">
-    <span class="w3-bar-item">
-      <a href="domsitee1.html">
-        <img src="Newline.png" style="height: 82px;">
-      </a>
-    </span>
-    <div class="w3-center">
-      <h1>New Line Trust Bank</h1>
+<div class="w3-bar w3-striped w3-black w3-small top-bar">
+  <span class="w3-bar-item">
+    <a href="domsitee1.html">
+      <img src="Newline.png" style="height: 82px;">
+    </a>
+  </span>
+  <div class="w3-center">
+    <h1>New Line Trust Bank</h1>
+  </div>
+  <span class="w3-bar-item w3-right">
+    <a href="index.html">
+      <button class="w3-button w3-small w3-black">
+        <i class="fa fa-sign-out"></i> Logout
+      </button>
+    </a>
+  </span>
+</div>
+
+<div class="layout" style="margin-top: 82px;">
+  <nav class="sidebar">
+    <div class="w3-container w3-row">
+      <div class="w3-col s8 w3-bar">
+        <span>Welcome, <strong>Flores, Tarik</strong></span><br>
+      </div>
+      <div class="w3-col s4">
+        <img src="Flores.jpg" alt="Profile Picture" style="width:100%;height: 80px;border-radius:100%;margin-top:20px;">
+      </div>
     </div>
-    <span class="w3-bar-item w3-right">
-      <a href="index.html">
-        <button class="w3-button w3-small w3-black">
-          <i class="fa fa-sign-out"></i> Logout
+    <hr>
+    <div class="w3-container">
+      <h5>Services</h5>
+    </div>
+    <div class="w3-bar-block">
+      <a href="domsitee1.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i> Overview</a>
+      <a href="send.html" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-money fa-fw"></i> Send Money</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-laptop fa-fw"></i> Pay bills</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-credit-card fa-fw"></i> Request Credit Card</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding" onclick="location.href='mailto:fidelityamericatrust@gmail.com'"><i class="fa fa-balance-scale fa-fw"></i> Dispute Resolution</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i> History</a>
+      <a href="profile.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw"></i> Profile</a>
+    </div>
+  </nav>
+
+  <div class="main-content">
+    <header class="w3-container">
+      <h5><b><i class="fa fa-dashboard"></i> Money Transfer</b></h5>
+    </header>
+
+    <div class="w3-row-padding w3-margin-bottom">
+      <div class="w3-col w3-container w3-green w3-padding-50 w3-round-large">
+        <div class="w3-left"><i class="fa fa-money w3-xxxlarge"></i></div>
+        <div class="w3-clear w3-animate-opacity w3-center">
+          <h4>Available Balance</h4>
+          <span id="balance" class="balance-text"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Transfer Form -->
+    <div class="w3-container w3-margin-top w3-padding w3-card-4">
+      <h3>Send Money</h3>
+      <form onsubmit="submitTransfer(event)">
+        <label>Recipient Name</label>
+        <input class="w3-input w3-border" id="recipient" required>
+
+        <label class="w3-margin-top">Bank Name</label>
+        <input class="w3-input w3-border" id="bank" required>
+
+        <label class="w3-margin-top">Account Number</label>
+        <input class="w3-input w3-border" id="account" type="number" required>
+
+        <label class="w3-margin-top">Amount ($)</label>
+        <input class="w3-input w3-border" id="amount" type="number" min="1" required>
+
+        <button type="submit" class="w3-button w3-green w3-margin-top">
+          <i class="fa fa-paper-plane"></i> Send
         </button>
-      </a>
-    </span>
-  </div>
-
-  <div class="layout" style="margin-top: 82px;">
-    <!-- Sidebar -->
-    <nav class="sidebar">
-      <div class="w3-container w3-row">
-        <div class="w3-col s8 w3-bar">
-          <span>Welcome, <strong>Flores, Tarik</strong></span><br>
-        </div>
-        <div class="w3-col s4">
-          <img src="Flores.jpg" alt="Profile Picture" style="width:100%;height: 80px;border-radius:100%;margin-top:20px;">
-        </div>
-      </div>
-      <hr>
-      <div class="w3-container">
-        <h5>Services</h5>
-      </div>
-      <div class="w3-bar-block">
-        <a href="domsitee1.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i> Overview</a>
-        <a href="send.html" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-money fa-fw"></i> Send Money</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-laptop fa-fw"></i> Pay bills</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-credit-card fa-fw"></i> Request Credit Card</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding" onclick="location.href='mailto:fidelityamericatrust@gmail.com'"><i class="fa fa-balance-scale fa-fw"></i> Dispute Resolution</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i> History</a>
-        <a href="profile.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw"></i> Profile</a>
-      </div>
-    </nav>
-
-    <!-- Main Content -->
-    <div class="main-content">
-      <header class="w3-container">
-        <h5><b><i class="fa fa-dashboard"></i> Money Transfer</b></h5>
-      </header>
-
-      <div class="w3-row-padding w3-margin-bottom">
-        <div class="w3-col w3-container w3-green w3-padding-50 w3-round-large">
-          <div class="w3-left"><i class="fa fa-money w3-xxxlarge"></i></div>
-          <div class="w3-clear w3-animate-opacity w3-center">
-            <h4>Available Balance</h4>
-            <span id="balance" class="balance-text"></span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Transfer Form -->
-      <div class="w3-container w3-margin-top w3-padding w3-card-4">
-        <h3>Send Money</h3>
-        <form onsubmit="submitTransfer(event)">
-          <label>Recipient Name</label>
-          <input class="w3-input w3-border" id="recipient" required>
-
-          <label class="w3-margin-top">Amount ($)</label>
-          <input class="w3-input w3-border" type="number" id="amount" min="1" required>
-
-          <button type="submit" class="w3-button w3-green w3-margin-top">
-            <i class="fa fa-paper-plane"></i> Send
-          </button>
-        </form>
-      </div>
+      </form>
     </div>
   </div>
+</div>
 
-  <footer class="w3-container w3-padding-16 w3-light-grey">
-    <p>Powered by <a href="#" target="_blank">LiisH</a></p>
-  </footer>
+<footer class="w3-container w3-padding-16 w3-light-grey">
+  <p>Powered by <a href="#" target="_blank">LiisH</a></p>
+</footer>
 
-  <script>
-    window.addEventListener('load', updateBalance);
+<script>
+  window.addEventListener('load', updateBalance);
 
-    function updateBalance() {
-      let storedBalance = localStorage.getItem('balance');
-      if (!storedBalance || isNaN(parseFloat(storedBalance)) || parseFloat(storedBalance) > 550000.91 || parseFloat(storedBalance) < 510000.86) {
-        const initialBalance = (Math.random() * (550000.91 - 510000.86) + 510000.86).toFixed(2);
-        storedBalance = initialBalance;
-        localStorage.setItem('balance', storedBalance);
-      }
-
-      const balance = parseFloat(localStorage.getItem('balance'));
-      document.getElementById('balance').textContent = '$' + balance.toLocaleString(undefined, {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-      });
+  function updateBalance() {
+    let storedBalance = localStorage.getItem('balance');
+    if (!storedBalance || isNaN(parseFloat(storedBalance)) || parseFloat(storedBalance) > 550000.91 || parseFloat(storedBalance) < 510000.86) {
+      const initialBalance = (Math.random() * (550000.91 - 510000.86) + 510000.86).toFixed(2);
+      storedBalance = initialBalance;
+      localStorage.setItem('balance', storedBalance);
     }
 
-    function submitTransfer(event) {
-      event.preventDefault();
-      const recipient = document.getElementById('recipient').value.trim();
-      const amount = parseFloat(document.getElementById('amount').value);
-      let balance = parseFloat(localStorage.getItem('balance'));
+    const balance = parseFloat(localStorage.getItem('balance'));
+    document.getElementById('balance').textContent = '$' + balance.toLocaleString(undefined, {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
+  }
 
-      if (!recipient) {
-        alert("Please enter a recipient.");
-        return;
-      }
+  function submitTransfer(event) {
+    event.preventDefault();
+    const recipient = document.getElementById('recipient').value.trim();
+    const bank = document.getElementById('bank').value.trim();
+    const account = document.getElementById('account').value.trim();
+    const amount = parseFloat(document.getElementById('amount').value);
+    let balance = parseFloat(localStorage.getItem('balance'));
 
-      if (amount > balance) {
-        alert("Insufficient balance.");
-        return;
-      }
-
-      balance -= amount;
-      localStorage.setItem('balance', balance.toFixed(2));
-      updateBalance();
-      alert("Transfer Successful to " + recipient + "!");
-      document.getElementById('recipient').value = "";
-      document.getElementById('amount').value = "";
+    if (!recipient || !bank || !account || isNaN(amount)) {
+      alert("All fields are required.");
+      return;
     }
-  </script>
+
+    if (amount > balance) {
+      alert("Insufficient balance.");
+      return;
+    }
+
+    balance -= amount;
+    localStorage.setItem('balance', balance.toFixed(2));
+    updateBalance();
+
+    alert(`Transfer of $${amount.toFixed(2)} to ${recipient} (${bank} - ${account}) was successful.`);
+
+    document.getElementById('recipient').value = "";
+    document.getElementById('bank').value = "";
+    document.getElementById('account').value = "";
+    document.getElementById('amount').value = "";
+  }
+</script>
+
 </body>
 </html>
