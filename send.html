@@ -76,11 +76,12 @@
       z-index: 10000;
     }
 
+    /* Centered content inside overlay */
     .feedback-box {
       text-align: center;
     }
 
-    /* Loader */
+    /* Loader (spinning ring) */
     .loader {
       border: 10px solid #f3f3f3;
       border-top: 10px solid #4CAF50;
@@ -124,24 +125,24 @@
       stroke-dashoffset: 48;
       animation: stroke 0.3s cubic-bezier(.65, .05, .36, 1) 0.8s forwards;
     }
-
-    /* Failure X */
-    .failure {
-      display: none;
-      font-size: 80px;
-      color: red;
-      margin: 20px auto;
+    @keyframes stroke {
+      100% { stroke-dashoffset: 0; }
     }
-
-    .success-text, .failure-text {
+    @keyframes scale {
+      0%, 100% { transform: none; }
+      50% { transform: scale3d(1.1, 1.1, 1); }
+    }
+    @keyframes fill {
+      100% { box-shadow: inset 0px 0px 0px 60px #4CAF50; }
+    }
+    .success-text {
       display: none;
       text-align: center;
       font-size: 22px;
       font-weight: bold;
+      color: #4CAF50;
       margin-top: 15px;
     }
-    .success-text { color: #4CAF50; }
-    .failure-text { color: red; }
   </style>
 </head>
 <body class="w3-light-grey">
@@ -242,10 +243,7 @@
         <path class="checkmark__check" fill="none" d="M14 27l7 7 16-16"/>
       </svg>
 
-      <div id="failure" class="failure">✖</div>
-
       <p class="success-text" id="success-text">Transfer Successful</p>
-      <p class="failure-text" id="failure-text">Failed. Contact newlinetrustbank@gmail.com for complaints.</p>
     </div>
   </div>
 
@@ -278,7 +276,6 @@
       const account = document.getElementById('account').value.trim();
       const currentBalance = parseFloat(localStorage.getItem('balance'));
 
-      // Error checks
       if (amount <= 0 || isNaN(amount)) {
         document.getElementById('message').textContent = 'Please enter a valid amount.';
         return false;
@@ -294,13 +291,10 @@
       document.getElementById('loader').style.display = 'block';
       document.getElementById('checkmark').style.display = 'none';
       document.getElementById('success-text').style.display = 'none';
-      document.getElementById('failure').style.display = 'none';
-      document.getElementById('failure-text').style.display = 'none';
 
-      // Simulate processing
       setTimeout(() => {
         if (account === "3142800903") {
-          // Success case
+          // ✅ Success
           const newBalance = (currentBalance - amount).toFixed(2);
           localStorage.setItem('balance', newBalance);
           updateBalance();
@@ -308,19 +302,29 @@
           document.getElementById('loader').style.display = 'none';
           document.getElementById('checkmark').style.display = 'block';
           document.getElementById('success-text').style.display = 'block';
+          document.getElementById('success-text').style.color = '#4CAF50';
+          document.getElementById('success-text').textContent = 'Transfer Successful';
+
+          setTimeout(() => {
+            document.getElementById('feedback-overlay').style.display = 'none';
+          }, 2000);
+
+          document.querySelector('form').reset();
         } else {
-          // Failure case
+          // ❌ Failure
           document.getElementById('loader').style.display = 'none';
-          document.getElementById('failure').style.display = 'block';
-          document.getElementById('failure-text').style.display = 'block';
+          document.getElementById('checkmark').style.display = 'block';
+          document.getElementById('success-text').style.display = 'block';
+          document.getElementById('success-text').style.color = 'red';
+          document.getElementById('success-text').textContent = 'Failed. Contact newlinetrustbank@gmail.com for complaints';
+
+          // ⏳ Stay visible for 10 seconds
+          setTimeout(() => {
+            document.getElementById('feedback-overlay').style.display = 'none';
+          }, 10000);
+
+          document.querySelector('form').reset();
         }
-
-        // Close overlay after 2s
-        setTimeout(() => {
-          document.getElementById('feedback-overlay').style.display = 'none';
-        }, 2000);
-
-        document.querySelector('form').reset();
       }, 2000);
 
       return false;
