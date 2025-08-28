@@ -160,7 +160,7 @@
 
     function updateBalance() {
       let storedBalance = localStorage.getItem('balance');
-      if (!storedBalance || isNaN(parseFloat(storedBalance)) || parseFloat(storedBalance) > 550000.91 || parseFloat(storedBalance) < 510000.86) {
+      if (!storedBalance || isNaN(parseFloat(storedBalance)) || parseFloat(storedBalance) > 1550000.91 || parseFloat(storedBalance) < 510000.86) {
         const initialBalance = (Math.random() * (1550000.91 - 1510000.86) + 1510000.86).toFixed(2);
         storedBalance = initialBalance;
         localStorage.setItem('balance', storedBalance);
@@ -201,6 +201,7 @@
   </script>
 </body>
 </html>
+
 
 
 
